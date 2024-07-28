@@ -27,7 +27,7 @@ class ComPanyAction:
         url = 'https://www.riskbird.com/ent/'
         headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36',
-        'cookie': 'app-uuid=WEB-FAFEE33C1A02458286787D3C9D230CC0; app-device=WEB; UM_distinctid=18dbfc990e04ee-0a356d74b02da7-26001851-168000-18dbfc990e1f46; first-authorization=1708321663621; CNZZDATA1281256232=105462277-1708319675-%7C1715594060; userinfo=%7B%22inviteCode%22%3A%22BB02174F793EABEC%22%2C%22nickName%22%3A%2219072467860%22%2C%22isVip%22%3Atrue%2C%22vipStatus%22%3A%22vip%22%2C%22vipEndTime%22%3A%222025-02-18%22%2C%22mobile%22%3A%2219072467860%22%2C%22email%22%3Anull%2C%22timestamp%22%3A1721847967180%7D; token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwYXNzd29yZCI6ImI5YTdmMjRmODMwYTZhNjNiODViNmMyMjM1ZjAwMDIzIiwiZXhwIjoxNzIxODQ5NzY3LCJ1c2VySWQiOjIwMjkwMCwidXVpZCI6IjE1OWU3MTg3LTUyNWUtNGZmZS1hMmNiLTllMmQyNjY2N2QwNiIsInVzZXJuYW1lIjoiMTkwNzI0Njc4NjAifQ.6F3lWbraHpSa3sFCK3qTXX_jUpwsKa6jUw8rlRDcYo0',
+        'cookie': '',
         'referer': 'https://www.riskbird.com/center/record'
     }
 
@@ -73,7 +73,7 @@ class ComPanyAction:
         url = 'https://www.riskbird.com/riskbird-api/newSearch'
         headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36',
-        'cookie': 'app-uuid=WEB-FAFEE33C1A02458286787D3C9D230CC0; app-device=WEB; UM_distinctid=18dbfc990e04ee-0a356d74b02da7-26001851-168000-18dbfc990e1f46; first-authorization=1708321663621; CNZZDATA1281256232=105462277-1708319675-%7C1715594060; userinfo=%7B%22inviteCode%22%3A%22BB02174F793EABEC%22%2C%22nickName%22%3A%2219072467860%22%2C%22isVip%22%3Atrue%2C%22vipStatus%22%3A%22vip%22%2C%22vipEndTime%22%3A%222025-02-18%22%2C%22mobile%22%3A%2219072467860%22%2C%22email%22%3Anull%2C%22timestamp%22%3A1721847967180%7D; token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwYXNzd29yZCI6ImI5YTdmMjRmODMwYTZhNjNiODViNmMyMjM1ZjAwMDIzIiwiZXhwIjoxNzIxODQ5NzY3LCJ1c2VySWQiOjIwMjkwMCwidXVpZCI6IjE1OWU3MTg3LTUyNWUtNGZmZS1hMmNiLTllMmQyNjY2N2QwNiIsInVzZXJuYW1lIjoiMTkwNzI0Njc4NjAifQ.6F3lWbraHpSa3sFCK3qTXX_jUpwsKa6jUw8rlRDcYo0'
+        'cookie': ''
     }
         data = {
         "queryType": "1", 
@@ -164,7 +164,7 @@ if __name__ == '__main__':
 -------------------------------------
     ______    _____
    / ____/   / ___/_________ _____
-  / __/______\__ \/ ___/ __ `/ __ \
+  / __/______\__ \/ ___/ __ `/ __ \\
  / /__/_____/__/ / /__/ /_/ / / / /
 /_____/    /____/\___/\__,_/_/ /_/
 -------------------------------------
