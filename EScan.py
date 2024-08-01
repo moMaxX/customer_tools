@@ -12,6 +12,7 @@ class ComPanyAction:
         self.parser.add_argument('-c', '--company', help='企业名称')
         self.parser.add_argument('-f', '--file', help='企业名称文件')
         self.parser.add_argument('-n', '--noname', help='模糊查询模式')
+        self.parser.add_argument('-i', '--init', help='初始化')
         self.args = self.parser.parse_args()
 
     #创建get方法，供外部函数调用内部定义参数
@@ -23,11 +24,50 @@ class ComPanyAction:
             self.parser.print_help()
             exit()
 
+    #初始化函数，写入cookie值信息
+    def init(self):
+
+        import configparser
+        from urllib.parse import quote
+        cookie = input('请输入cookie值(网站地址：https://www.riskbird.com):')
+        cookie = quote(cookie)
+
+        config = configparser.ConfigParser(interpolation=None)
+        #引入错误处理机制
+        try:
+            config.read('config.ini')
+        except configparser.MissingSectionHeaderError:
+            #如果文件格式不正确或为空，创建一个新的配置文件并添加default
+            with open('config.ini', 'w') as configfile:
+                config.add_section('default')
+                config.write(configfile)
+
+        config.read('config.ini')
+        if not config.has_section('default'):
+            config.add_section('default')
+        
+        config.set('default', 'cookie', cookie)
+
+        with open('config.ini', 'w') as configfile:
+            config.write(configfile)
+
+    #获取cookie信息
+    def get_cookie(self):
+        import configparser
+        from urllib.parse import unquote
+        config = configparser.ConfigParser(interpolation=None)
+        config.read('config.ini')
+        cookie = config.get('default', 'cookie')
+        cookie = unquote(cookie)
+
+        return cookie
+
     def fengniao_query_res(self, company):
+        cookie = self.get_cookie()
         url = 'https://www.riskbird.com/ent/'
         headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36',
-        'cookie': '',
+        'cookie': cookie,
         'referer': 'https://www.riskbird.com/center/record'
     }
 
@@ -70,10 +110,11 @@ class ComPanyAction:
             print(f'Error occurred: {e}')
 
     def fengniao_query_comname(self, pageNo = 1):
+        cookie = self.get_cookie()
         url = 'https://www.riskbird.com/riskbird-api/newSearch'
         headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36',
-        'cookie': ''
+        'cookie': cookie
     }
         data = {
         "queryType": "1", 
@@ -101,11 +142,12 @@ class ComPanyAction:
                         entname = company_info['ENTNAME']
                         tels = company_info['tels']
                         emails = company_info['emails']
-                        table_data.append([entname, tels, emails])
+                        zijin = company_info['REGCAP'] + company_info['REGCAPCUR']
+                        table_data.append([entname, tels, emails, zijin])
                     else:
                         exit('未查询到公司参数')
                     # print(entname)
-                headers = ['公司名称', '联系电话', '联系邮箱']
+                headers = ['公司名称', '联系电话', '联系邮箱', '注册资金']
                 print(tabulate(table_data, headers=headers, tablefmt='grid'))
                 self.fanye_query_res(found)
             else:
@@ -142,6 +184,10 @@ def main():
     a = ComPanyAction()
     a.parse_argument()
     args = a.get_args()
+
+    if args.init:
+        print('初始化模式启动中.....')
+        a.init()
 
     if args.noname:
         print(f'模糊查询模式启动中......')
